@@ -142,5 +142,15 @@ namespace CodingChallenge.Data.Tests
 
             Assert.That(15m, Is.EqualTo(trapecio.CalcularPerimetro()));
         }
+        [Test]
+        [TestCase(10, 5, 50)]
+        [TestCase(10, 4, 40)]
+        [TestCase(8, 6, 48)]
+        public void AreaRectangulo(decimal ladoA, decimal ladoB, decimal esperado)
+        {
+            Rectangulo rectangulo = new Rectangulo(ladoA,ladoB);
+            decimal result = rectangulo.CalcularArea();
+            Assert.AreEqual(esperado, result);
+        }
     }
 }
