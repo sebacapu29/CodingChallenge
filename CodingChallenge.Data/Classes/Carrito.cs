@@ -9,7 +9,6 @@ namespace CodingChallenge.Data.Classes
 {
     public class Carrito
     {
-
         #region Atributos Privados
         private static List<IFormaGeometrica> _listaFormasGeometricas;
         #endregion

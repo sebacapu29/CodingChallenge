@@ -14,6 +14,8 @@ namespace CodingChallenge.Data.Classes
         {
         }
         #endregion
+
+        #region Metodos Públicos
         public decimal CalcularArea()
         {
             return ((this.Lados[0] + this.Lados[1] ) * this.Altura) / 2;
@@ -34,5 +36,13 @@ namespace CodingChallenge.Data.Classes
             string palabraSoP = cantidad > 1 ? Resources.Idioma.Trapecios + "s" : Resources.Idioma.Trapecio;
             return $"{cantidad} {palabraSoP} | {Resources.Idioma.Area} {area:#.##} | {Resources.Idioma.Perimetro} {perimetro:#.##} <br/>";
         }
+        #endregion
+
+        #region Métodos Protegidos
+        public override string ObtenerNombre()
+        {
+            return Resources.Idioma.FormaGeometrica + " " + this.GetType().Name;
+        }
+        #endregion
     }
 }

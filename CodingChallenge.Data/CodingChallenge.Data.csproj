@@ -55,7 +55,6 @@
     <Compile Include="Classes\Cuadrado.cs" />
     <Compile Include="Classes\FormaGeometrica.cs" />
     <Compile Include="Classes\Funcion.cs" />
-    <Compile Include="Classes\Poligono.cs" />
     <Compile Include="Classes\Rectangulo.cs" />
     <Compile Include="Classes\Trapecio.cs" />
     <Compile Include="Classes\Triangulo.cs" />

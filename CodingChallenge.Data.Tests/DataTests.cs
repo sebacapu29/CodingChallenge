@@ -181,5 +181,16 @@ namespace CodingChallenge.Data.Tests
             decimal result = rectangulo.CalcularArea();
             Assert.AreEqual(esperado, result);
         }
+        /// <summary>
+        /// Valída si el string pasado por parametros es igual a resultado del método ObtenerNombre
+        /// </summary>
+        /// <param name="valorEsperado"></param>
+        [TestCase("Forma Geométrica Rectangulo")]
+        public void NombreDeFiguras(string valorEsperado)
+        {
+            Rectangulo rectangulo = new Rectangulo(4,5);
+            var result = rectangulo.ObtenerNombre();
+            Assert.AreEqual(valorEsperado, result);
+        }
     }
 }

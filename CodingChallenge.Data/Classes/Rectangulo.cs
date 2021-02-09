@@ -22,6 +22,7 @@ namespace CodingChallenge.Data.Classes
         }
         #endregion
 
+        #region Metodos Públicos
         public decimal CalcularArea()
         {
             return this.Lados[0] * this.Lados[1]; //Base * Altura
@@ -34,8 +35,16 @@ namespace CodingChallenge.Data.Classes
 
         public string ObtenerLinea(int cantidad, decimal area, decimal perimetro)
         {
-            string palabraSoP = cantidad > 1 ? Resources.Idioma.Rectangulos + : Resources.Idioma.Rectangulo;
+            string palabraSoP = cantidad > 1 ? Resources.Idioma.Rectangulos : Resources.Idioma.Rectangulo;
             return $"{cantidad} {palabraSoP} | {Resources.Idioma.Area} {area:#.##} | {Resources.Idioma.Perimetro} {perimetro:#.##} <br/>";
         }
+        #endregion
+
+        #region Métodos Protegidos
+        public override string ObtenerNombre()
+        {
+            return Resources.Idioma.FormaGeometrica + " " + this.GetType().Name;
+        }
+        #endregion
     }
 }

@@ -35,5 +35,12 @@ namespace CodingChallenge.Data.Classes
             return $"{cantidad} {palabraSoP} | {Resources.Idioma.Area} {area:#.##} | {Resources.Idioma.Perimetro} {perimetro:#.##} <br/>";
         }
         #endregion
+
+        #region Métodos Protegidos
+        public override string ObtenerNombre()
+        {
+            return Resources.Idioma.FormaGeometrica + " " + this.GetType().Name;
+        }
+        #endregion
     }
 }

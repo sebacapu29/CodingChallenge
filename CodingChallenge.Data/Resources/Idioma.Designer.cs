@@ -124,7 +124,7 @@ namespace CodingChallenge.Data.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to FormaGeometrica.
+        ///   Looks up a localized string similar to Forma Geométrica.
         /// </summary>
         public static string FormaGeometrica {
             get {

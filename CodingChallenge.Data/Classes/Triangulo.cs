@@ -19,6 +19,7 @@ namespace CodingChallenge.Data.Classes
         public TipoTriangulo Tipo { get { return this._tipo; } }
         #endregion
 
+        #region Constructor
         public Triangulo(TipoTriangulo tipo, decimal lado) : base(lado)
         {
             this._tipo = tipo;
@@ -36,6 +37,7 @@ namespace CodingChallenge.Data.Classes
         {
             this._tipo = tipo;
         }
+        #endregion
       
         #region Metodos privados para Calculo de Area
         /// <summary>
@@ -95,6 +97,7 @@ namespace CodingChallenge.Data.Classes
         }
         #endregion
 
+        #region Metodos Públicos
         /// <summary>
         /// Calcula el Area de un Triangulo, en caso de necesitar algun dato previo, lo calcula y luego lo usa en la formula final
         /// </summary>
@@ -132,7 +135,14 @@ namespace CodingChallenge.Data.Classes
             string palabraSoP = cantidad > 1 ? Resources.Idioma.Triangulos : Resources.Idioma.Triangulo;
             return $"{cantidad} {palabraSoP} | {Resources.Idioma.Area} {area:#.##} | {Resources.Idioma.Perimetro} {perimetro:#.##} <br/>";
         }
+        #endregion
 
+        #region Métodos Protegidos
+        public override string ObtenerNombre()
+        {
+            return Resources.Idioma.FormaGeometrica + " " + this.GetType().Name;
+        }
+        #endregion
     }
     public enum TipoTriangulo
     {

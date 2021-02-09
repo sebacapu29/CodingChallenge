@@ -117,5 +117,9 @@ namespace CodingChallenge.Data.Classes
             return sb.ToString();
         }
 
+        public virtual string ObtenerNombre()
+        {
+            return this.GetType().Name;
+        }
     }
 }

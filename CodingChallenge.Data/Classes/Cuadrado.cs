@@ -16,6 +16,7 @@ namespace CodingChallenge.Data.Classes
         }
         #endregion
 
+        #region Metodos Públicos
         public decimal CalcularArea()
         {
             return this.Lado * this.Lado;
@@ -40,5 +41,13 @@ namespace CodingChallenge.Data.Classes
             string palabra = cantidad > 1 ? Resources.Idioma.Cuadrados : Resources.Idioma.Cuadrado;
             return $"{cantidad} {palabra} | {Resources.Idioma.Area} {area:#.##} | {Resources.Idioma.Perimetro} {perimetro:#.##} <br/>";
         }
+        #endregion
+
+        #region Métodos Protegidos
+        public override string ObtenerNombre()
+        {
+            return  Resources.Idioma.FormaGeometrica + " " + this.GetType().Name;
+        }
+        #endregion
     }
 }

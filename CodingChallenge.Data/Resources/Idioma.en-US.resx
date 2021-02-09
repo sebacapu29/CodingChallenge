@@ -138,6 +138,9 @@
   <data name="Figuras" xml:space="preserve">
     <value>Shapes</value>
   </data>
+  <data name="FormaGeometrica" xml:space="preserve">
+    <value>Geometric form</value>
+  </data>
   <data name="ListaVacia" xml:space="preserve">
     <value>Empty list of shapes</value>
   </data>
