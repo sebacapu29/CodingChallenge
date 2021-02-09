@@ -10,11 +10,15 @@ namespace CodingChallenge.Data.Classes
     public class Triangulo : FormaGeometrica<Triangulo> , IFormaGeometrica
     {
         //[0] base , [1] lado , [2] lado
-        
-        private TipoTriangulo _tipo;
 
+        #region Atributos privados
+        private TipoTriangulo _tipo;
+        #endregion
+
+        #region Propiedades Publicas
         public TipoTriangulo Tipo { get { return this._tipo; } }
-       
+        #endregion
+
         public Triangulo(TipoTriangulo tipo, decimal lado) : base(lado)
         {
             this._tipo = tipo;
@@ -32,6 +36,65 @@ namespace CodingChallenge.Data.Classes
         {
             this._tipo = tipo;
         }
+      
+        #region Metodos privados para Calculo de Area
+        /// <summary>
+        /// Calcula la formula del triangulo Equilatero, verificando si existe la altura, en caso que sea 0 la calcula y luego utiliza la formlula tradicional base x altura / 2
+        /// </summary>
+        /// <returns></returns>
+        private decimal CalcularAreaEquilatero() 
+        {
+            if (this.Altura == 0)
+            {
+                var b = this.Lado;
+                var h = ((decimal)Math.Sqrt(3) * b) / 2;
+                return (b * h)/2;
+            }
+            return this.CalcularAreaBaseAltura();
+        }
+        /// <summary>
+        /// En caso de no conocer el Area (h) se calcula con su lado base (b) y el lado (a) - Formula : h = razi(b^2 - a^2/4)
+        /// Luego el area se calcula con la formula : (b x h) / 2
+        /// </summary>
+        /// <returns></returns>
+        private decimal CalcularAreaIsoceles()
+        {
+            if (this.Altura == 0)
+            {
+                var b = this.Lados[0];
+                var a = this.Lados[1];
+                var h = Math.Round((decimal)Math.Sqrt( (Math.Pow(Convert.ToDouble(b),2)) - Math.Pow(Convert.ToDouble(a), 2)/4));
+                
+                return ((decimal) (b * h) /2);
+            }
+            return (decimal)this.Lados[0] * this.Altura / 2;
+        }
+
+        /// <summary>
+        /// Obtiene el calculo del Area de un triangulo Escaleno, Se debe conocer los 3 lados para calcular el area del triangulo
+        /// Notacion semiperimetro (sp), y (a,b,c) son lados
+        /// </summary>
+        /// <returns></returns>
+        private decimal CalcularAreaEscaleno()
+        {
+            var sp = this.Lados.Sum() / 2;
+            var a = this.Lados[0];
+            var b = this.Lados[1];
+            var c = this.Lados[2];
+
+            return ((decimal)Math.Sqrt((double)(sp * (sp - a) * (sp - b) * (sp - c))));
+        }
+        /// <summary>
+        /// Calcula el Area con la formula de base (b) * altura (h) / 2 conociendo ambos valores
+        /// </summary>
+        /// <returns></returns>
+        private decimal CalcularAreaBaseAltura()
+        {
+            var b = this.Lado;
+            return (b * this.Altura) / 2;
+        }
+        #endregion
+
         /// <summary>
         /// Calcula el Area de un Triangulo, en caso de necesitar algun dato previo, lo calcula y luego lo usa en la formula final
         /// </summary>
@@ -41,36 +104,22 @@ namespace CodingChallenge.Data.Classes
             switch (this._tipo)
             {
                 case TipoTriangulo.Equilatero:
-                    if (this.Altura == 0)
-                    {
-                        this.Altura = Math.Round(((decimal)Math.Sqrt(3) * this.Lado / 2),2);
-                        return ((decimal)Math.Sqrt(3) / 4) * (this.Altura * this.Altura);
-                    }
-                    return ((decimal)Math.Sqrt(3) / 4) * (this.Altura * this.Altura);
+                    return this.CalcularAreaEquilatero();
                 case TipoTriangulo.Isoceles:
-                    return ((decimal)Math.Sqrt((double)((this.Altura * this.Altura) - (this.Altura * this.Altura / 4))) / 2);
+                    return this.CalcularAreaIsoceles();
                 case TipoTriangulo.Escaleno:
-                    var semiperimetro = this.Lados.Sum();
-                    return ((decimal)Math.Sqrt((double)(semiperimetro * (semiperimetro - this.Altura) * (semiperimetro - this.Lado) * (semiperimetro - this.Lados[2]))));
+                    return this.CalcularAreaEscaleno();
                 case TipoTriangulo.Rectangulo:
-                    return (this.Lado * this.Altura) / 2;
+                    return this.CalcularAreaBaseAltura();
                 default:
-                    return (this.Lado * this.Altura) / 2;
+                    return this.CalcularAreaBaseAltura();
             }
         }
-
         public decimal CalcularPerimetro()
         {
-            if(this.Tipo == TipoTriangulo.Equilatero)
+            if (this.Tipo == TipoTriangulo.Equilatero)
             {
-                if (this.Altura > 0)
-                {
-                    return this.Altura * 3;
-                }
-                else
-                {
-                    return this.Lado * 3;
-                }
+                return this.Lado * 3;
             }
             else
             {

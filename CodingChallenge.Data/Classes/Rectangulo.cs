@@ -9,10 +9,19 @@ namespace CodingChallenge.Data.Classes
 {
     public class Rectangulo : FormaGeometrica<Rectangulo>, IFormaGeometrica
     {
+        #region Constructor
+
+        /// <summary>
+        /// A partir de los lados A y B se instancia un array con esos valores
+        /// </summary>
+        /// <param name="ladoBase"></param>
+        /// <param name="ladoAltura"></param>
         public Rectangulo(decimal ladoBase ,decimal ladoAltura):base(new decimal[] { ladoBase,ladoAltura})
         {
 
         }
+        #endregion
+
         public decimal CalcularArea()
         {
             return this.Lados[0] * this.Lados[1]; //Base * Altura
@@ -25,7 +34,7 @@ namespace CodingChallenge.Data.Classes
 
         public string ObtenerLinea(int cantidad, decimal area, decimal perimetro)
         {
-            string palabraSoP = cantidad > 1 ? Resources.Idioma.Rectangulo+"s" : Resources.Idioma.Rectangulo;
+            string palabraSoP = cantidad > 1 ? Resources.Idioma.Rectangulos + : Resources.Idioma.Rectangulo;
             return $"{cantidad} {palabraSoP} | {Resources.Idioma.Area} {area:#.##} | {Resources.Idioma.Perimetro} {perimetro:#.##} <br/>";
         }
     }

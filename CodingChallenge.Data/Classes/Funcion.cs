@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace CodingChallenge.Data.Classes
 {
     /// <summary>
-    /// Clase que se agrego con la intencion de probar el Test AgregarObjectoNoPermitido
+    /// Clase que se agrego con la intención de probar el Test AgregarObjectoNoPermitido
     /// </summary>
     public class Funcion
     {

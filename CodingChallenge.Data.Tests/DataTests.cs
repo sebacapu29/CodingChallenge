@@ -12,6 +12,9 @@ namespace CodingChallenge.Data.Tests
     [TestFixture]
     public class DataTests
     {
+        /// <summary>
+        /// Utilizado para verificar que el texto sea igual a lo que retorne la funcion Imprimir
+        /// </summary>
         [TestCase]
         public void TestResumenListaVacia()
         {
@@ -19,6 +22,9 @@ namespace CodingChallenge.Data.Tests
                 FormaGeometrica<Cuadrado>.Imprimir(new List<Cuadrado>()));
         }
 
+        /// <summary>
+        /// Utilizado para verificar que el texto sea igual a lo que retorne la funcion Imprimir pero configurando el idioma Ingles
+        /// </summary>
         [TestCase]
         public void TestResumenListaVaciaFormasEnIngles()
         {
@@ -30,6 +36,9 @@ namespace CodingChallenge.Data.Tests
                 FormaGeometrica<Cuadrado>.Imprimir(new List<Cuadrado>()));
         }
 
+        /// <summary>
+        /// Utilizado para verificar el resultado de la variable resumen, debiendo resultar igual al informe completo de la figura geometrica (Cuadrado)
+        /// </summary>
         [TestCase]
         public void TestResumenListaConUnCuadrado()
         {
@@ -40,6 +49,9 @@ namespace CodingChallenge.Data.Tests
             Assert.AreEqual("<h1>Reporte de Formas</h1>1 Cuadrado | Area 25 | Perimetro 20 <br/>TOTAL:<br/>1 Figuras Perimetro 20 Area 25", resumen);
         }
 
+        /// <summary>
+        /// Utilizado para verificar el resultado de la variable resumen, debiendo resultar igual al informe completo de varias figuras geometricas iguales (Cuadrado)
+        /// </summary>
         [TestCase]
         public void TestResumenListaConMasCuadrados()
         {
@@ -72,11 +84,11 @@ namespace CodingChallenge.Data.Tests
             {
                 new Cuadrado(5),
                 new Circulo(3),
-                new Triangulo(TipoTriangulo.Equilatero){ Altura = 4},
+                new Triangulo(TipoTriangulo.Equilatero,4),
                 new Cuadrado(2),
-                new Triangulo(TipoTriangulo.Equilatero){ Altura = 9},
+                new Triangulo(TipoTriangulo.Equilatero,9),
                 new Circulo(2.75m),
-                new Triangulo(TipoTriangulo.Equilatero) {Altura = 4.2m}
+                new Triangulo(TipoTriangulo.Equilatero,4.2m)
             };
 
             var resumen = FormaGeometrica<IFormaGeometrica>.Imprimir(formas);
@@ -93,11 +105,11 @@ namespace CodingChallenge.Data.Tests
             {
                 new Cuadrado(5),
                 new Circulo(3),
-                new Triangulo(TipoTriangulo.Equilatero) { Altura=4 },
+                new Triangulo(TipoTriangulo.Equilatero, 4),
                 new Cuadrado(2),
-                new Triangulo(TipoTriangulo.Equilatero) { Altura = 9},
+                new Triangulo(TipoTriangulo.Equilatero, 9),
                 new Circulo(2.75m),
-                new Triangulo(TipoTriangulo.Equilatero) { Altura = 4.2m}
+                new Triangulo(TipoTriangulo.Equilatero, 4.2m)
             };
 
             var resumen = FormaGeometrica<IFormaGeometrica>.Imprimir(formas);
@@ -106,6 +118,9 @@ namespace CodingChallenge.Data.Tests
                 "<h1>Reporte de Formas</h1>2 Cuadrados | Area 29 | Perimetro 28 <br/>2 Círculos | Area 13,01 | Perimetro 18,06 <br/>3 Triángulos | Area 49,64 | Perimetro 51,6 <br/>TOTAL:<br/>7 Figuras Perimetro 97,66 Area 91,65",
                 resumen);
         }
+        /// <summary>
+        /// Utilizado para agregar una entidad (en este caso Cuadrado) a una lista, con la finalidad de verificar la sobrecarga del operador +
+        /// </summary>
         [TestCase]
         public void AgregarCuadradoAlCarrito()
         {
@@ -120,7 +135,10 @@ namespace CodingChallenge.Data.Tests
 
             Assert.IsTrue(seAgregoAlCarrito,"Se agrego a la lista");
         }
-        [Test]
+        /// <summary>
+        /// Caso contrario al anterior, utilizamos esta funcion para probar que no se puede agregar cualquier tipo a la lista con la sobrecarga del operador +
+        /// </summary>
+        [TestCase]
         public void AgregarObjectoNoPermitido()
         {
             var formas = new List<IFormaGeometrica>
@@ -135,6 +153,10 @@ namespace CodingChallenge.Data.Tests
 
             Assert.IsFalse(seAgregoAlCarrito, "Deberia ser objeto permitido");
         }
+
+        /// <summary>
+        /// En este caso verificamos que el valor sea igual al calculado
+        /// </summary>
         [TestCase]
         public void PerimetroTrapecio()
         {
@@ -142,6 +164,13 @@ namespace CodingChallenge.Data.Tests
 
             Assert.That(15m, Is.EqualTo(trapecio.CalcularPerimetro()));
         }
+
+        /// <summary>
+        /// Utilizado para verificar si el calculo del Area del Rectangulo es el esperado que se pasa por parametros
+        /// </summary>
+        /// <param name="ladoA">Lado A de un rectangulo</param>
+        /// <param name="ladoB">Lado B de un rectangulo</param>
+        /// <param name="esperado">Resultado esperado</param>
         [Test]
         [TestCase(10, 5, 50)]
         [TestCase(10, 4, 40)]

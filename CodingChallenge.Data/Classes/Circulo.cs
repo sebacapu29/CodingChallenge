@@ -9,13 +9,16 @@ namespace CodingChallenge.Data.Classes
 {
     public class Circulo : FormaGeometrica<Circulo>, IFormaGeometrica 
     {
-     
-        //Lado = diametro
 
+        //Lado = diametro
+        #region Constructor
         public Circulo(decimal diametro):base(diametro)
         {
 
         }
+        #endregion
+
+        #region Metodos Públicos
         public decimal CalcularArea()
         {
             return (decimal)(Math.PI * Math.Pow((double)(this.Lado / 2),2));
@@ -31,5 +34,6 @@ namespace CodingChallenge.Data.Classes
             string palabraSoP = cantidad > 1 ? Resources.Idioma.Circulos : Resources.Idioma.Circulo;
             return $"{cantidad} {palabraSoP} | {Resources.Idioma.Area} {area:#.##} | {Resources.Idioma.Perimetro} {perimetro:#.##} <br/>";
         }
+        #endregion
     }
 }
